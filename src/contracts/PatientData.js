@@ -1,5 +1,20 @@
-export const PATIENT_DATA_LIST_ADDRESS = "0x5913dC00279Ef98A23243F97d2F30B3197871a53"
+export const PATIENT_DATA_LIST_ADDRESS = "0xa1696aCf1aAdAA23AD9DC4f1FadD7D19f5b048C6"
 export const PATIENT_DATA_LIST_ABI = [
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "countMedicalReports",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x360d0f29"
+  },
   {
     "constant": true,
     "inputs": [
@@ -8,11 +23,47 @@ export const PATIENT_DATA_LIST_ABI = [
         "type": "address"
       }
     ],
-    "name": "PatientMedicalList",
+    "name": "senders",
     "outputs": [
       {
-        "name": "id",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "institutionName",
+        "type": "string"
+      },
+      {
+        "name": "institutionCode",
+        "type": "string"
+      },
+      {
+        "name": "patientCount",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0x982fb9d8"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "medicalReports",
+    "outputs": [
+      {
+        "name": "senderId",
         "type": "address"
+      },
+      {
+        "name": "medReportId",
+        "type": "string"
       },
       {
         "name": "weight",
@@ -42,93 +93,7 @@ export const PATIENT_DATA_LIST_ABI = [
     "payable": false,
     "stateMutability": "view",
     "type": "function",
-    "signature": "0x07ebb5f4"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "addr",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0x767800de"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "patients",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0x93119a83"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "patientCount",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xa0303c41"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "PatientBioList",
-    "outputs": [
-      {
-        "name": "id",
-        "type": "address"
-      },
-      {
-        "name": "name",
-        "type": "string"
-      },
-      {
-        "name": "birthDate",
-        "type": "string"
-      },
-      {
-        "name": "phoneNumber",
-        "type": "string"
-      },
-      {
-        "name": "_address",
-        "type": "string"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function",
-    "signature": "0xfa28ca2a"
+    "signature": "0xa2df7d0b"
   },
   {
     "inputs": [],
@@ -140,6 +105,10 @@ export const PATIENT_DATA_LIST_ABI = [
   {
     "constant": false,
     "inputs": [
+      {
+        "name": "patientId",
+        "type": "string"
+      },
       {
         "name": "patientName",
         "type": "string"
@@ -155,18 +124,11 @@ export const PATIENT_DATA_LIST_ABI = [
       {
         "name": "_address",
         "type": "string"
-      }
-    ],
-    "name": "addUpdatePatientBio",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function",
-    "signature": "0xaca2169d"
-  },
-  {
-    "constant": false,
-    "inputs": [
+      },
+      {
+        "name": "medReportId",
+        "type": "string"
+      },
       {
         "name": "weight",
         "type": "uint256"
@@ -192,11 +154,47 @@ export const PATIENT_DATA_LIST_ABI = [
         "type": "string"
       }
     ],
-    "name": "addUpdatePatientMedicalData",
+    "name": "addMedicalReport",
     "outputs": [],
     "payable": false,
     "stateMutability": "nonpayable",
     "type": "function",
-    "signature": "0xc113a6bc"
+    "signature": "0x0060d399"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "getPatientsList",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function",
+    "signature": "0xbeedbba9"
   }
 ]

@@ -7,9 +7,8 @@ export default function AddData(props) {
   const {
     patientBio,
     setPatientBio,
-    patientMedicalInfo,
-    setPatientMedicalInfo,
     addUpdatePatientBio,
+    next,
   } = props
 
   const handleChange = (e) => {
@@ -23,20 +22,29 @@ export default function AddData(props) {
       return
     }
     if (window.confirm('Are you sure that you want to save this data')) {
-      addUpdatePatientBio()
+      next()
     }
   }
 
   const as = (e) => {
-    console.log(e._d.toString())
+    console.log(e._d.toDateString())
     if(e && e._d)
-    setPatientBio({ ...patientBio, birthDate: e._d.toString() })
+    setPatientBio({ ...patientBio, birthDate: e._d.toDateString() })
   }
   return (
-    <div>
-      <Card className={style.card}>
+    <div className={style.cardContainer}>
+      <Card className={style.card} elevation={0}>
         <h2 className={style.h2}>Patient Bio Data</h2>
         <form className={style.form} noValidate autoComplete="off">
+        <TextField
+            id="outlined-basic"
+            label="Patient ID"
+            variant="outlined"
+            value={patientBio.id}
+            onChange={(e) =>
+              setPatientBio({ ...patientBio, id: e.target.value })
+            }
+          />
           <TextField
             id="outlined-basic"
             label="Name"
@@ -76,12 +84,14 @@ export default function AddData(props) {
             label="Address"
             variant="outlined"
             value={patientBio._address}
+            multiline
+            rows={2}
             onChange={(e) =>
               setPatientBio({ ...patientBio, _address: e.target.value })
             }
           />
           <Button className={style.btn} onClick={(e) => handleChange()}>
-            Save
+            Next
           </Button>
         </form>
       </Card>

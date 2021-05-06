@@ -10,11 +10,38 @@
 }
 .btn {
     padding: 12px !important;
-    border: 2px solid green !important;
+    border: 2px solid !important;
     color: green !important;
+}
+.btnRed {
+    color: red !important;
 }
 .h2 {
     color: cadetblue;
     text-transform: uppercase;
     text-align: center;
+}
+.cardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardsContainer {
+    display: grid;
+    grid-template-columns: 100% 100%;
+    scroll-behavior: smooth;
+}
+.btnGroup {
+    display: grid;
+    grid-template-columns: 20% calc(80% - 10px);
+    gap: 10px;
+}
+.textFieldGroup {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 2%;
+    align-items: center;
+}
+.date {
+    margin: 0 !important;
 }

@@ -1,23 +1,22 @@
 pragma solidity 0.5.0;
 
-
 contract PatientData {
-  uint256 public patientCount = 0;
-  address public addr = msg.sender;
-  mapping(uint => address) public patients;
-  mapping(address => PatientBio) public PatientBioList;
-  mapping(address => PatientMedicalData) public PatientMedicalList;
+  uint256 public countMedicalReports = 0;
+ 
+  mapping(address => Sender) public senders;
+  mapping(uint => PatientMedicalReportStruct) public medicalReports;
 
-  struct PatientBio {
-    address id;
+  struct PatientBioStruct {
     string name;
     string birthDate;
     string phoneNumber;
-    string _address; 
+    string _address;
+    uint medicalReportNo;
   }
 
-  struct PatientMedicalData {
-    address id;
+  struct PatientMedicalReportStruct {
+    address senderId;
+    string medReportId;
     uint weight;
     uint height;
     string bloodGroup;
@@ -26,25 +25,34 @@ contract PatientData {
     string diseaseStartedOn;
   }
 
-  constructor() public {
-    PatientBioList[0xb3a44ad28ed743eFBd857B57e97480ffCEaee97c] 
-      = PatientBio(0xb3a44ad28ed743eFBd857B57e97480ffCEaee97c, "Vishwas Paikra", "1998-09-21T18:30:00.000Z", "1223344556", "hno564 sai chowk avanti nagar east bhilai cg");
-    patients[++patientCount] = 0xb3a44ad28ed743eFBd857B57e97480ffCEaee97c;
+  struct Sender {
+    string name;
+    string institutionName;
+    string institutionCode;
+    uint patientCount;
+    mapping(uint => string) patientsArray;
+    mapping(string => PatientBioStruct) patients;
   }
 
-  function addUpdatePatientBio(
+  constructor() public {
+    // addMedicalReport(
+    //   "DJX1234KL", 
+    //   "Vishwas Paikra", 
+    //   "22 sep 1998", "1234567890", 
+    //   "hno535 vishal gaon near central park of bhilai cg", 
+    //   "MEDREPIDDFG3456KL", 58, 164, 
+    //   "B+", "Hypermyopia", 
+    //   "Caused by the continuous exposure to harmful blue light", 
+    //   "01 mar 2016");
+  }
+
+  function addMedicalReport(
+    string memory patientId,
     string memory patientName, 
     string memory birthDate, 
     string memory phoneNumber, 
-    string memory _address
-    ) public {
-    if(PatientBioList[msg.sender].id == address(0x0))
-      patients[++patientCount] = msg.sender;
-    PatientBioList[msg.sender] = 
-      PatientBio(msg.sender, patientName, birthDate, phoneNumber, _address);
-  }
-
-  function addUpdatePatientMedicalData(
+    string memory _address,
+    string memory medReportId,
     uint weight,
     uint height,
     string memory bloodGroup,
@@ -52,11 +60,45 @@ contract PatientData {
     string memory diseaseDescription,
     string memory diseaseStartedOn
     ) public {
-    if(PatientBioList[msg.sender].id == address(0x0))
+    // uint _hash = uint(keccak256(abi.encodePacked(msg.sender, patientId, medReportId)));
+    bytes memory name = bytes(senders[msg.sender].patients[patientId].name); 
+    if( name.length == 0)
     {
-      return;
+      senders[msg.sender].patientsArray[senders[msg.sender].patientCount++] = patientId; 
+      senders[msg.sender].patients[patientId] = 
+        PatientBioStruct(patientName, birthDate, phoneNumber, _address, countMedicalReports);
+    
+      medicalReports[countMedicalReports++] = 
+        PatientMedicalReportStruct(msg.sender,medReportId,  weight, height, bloodGroup, diseaseName, diseaseDescription, diseaseStartedOn);
+  
+    } else {
+      PatientBioStruct memory patientBio = 
+        senders[msg.sender].patients[patientId];
+      senders[msg.sender].patients[patientId] = 
+        PatientBioStruct(patientName, birthDate, phoneNumber, _address, patientBio.medicalReportNo);
+      medicalReports[patientBio.medicalReportNo] = 
+        PatientMedicalReportStruct(msg.sender, medReportId, weight, height, bloodGroup, diseaseName, diseaseDescription, diseaseStartedOn);
+  
     }
-    PatientMedicalList[msg.sender] = 
-      PatientMedicalData(msg.sender, weight, height, bloodGroup, diseaseName, diseaseDescription, diseaseStartedOn);
+    }
+  function getPatientsList(uint index) public view returns (
+    string memory,
+    string memory, 
+    string memory, 
+    string memory, 
+    uint) {
+    PatientBioStruct memory patientBio = 
+      senders[msg.sender].patients[senders[msg.sender].patientsArray[index]];
+    return (
+      patientBio.name,
+      patientBio.birthDate,
+      patientBio.phoneNumber,
+      patientBio._address,
+      patientBio.medicalReportNo
+    );
   }
+
+  // function getMedicalReports() public view returns (Sender memory) {
+  //   return (senders["0x021c485F1ba6B95C01Fac6dCf195E1f6c74abFc0"]);
+  // }
 }

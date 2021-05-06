@@ -1,3 +1,6 @@
 .card {
     padding-top: 20px;
 }
+.showDataContainer {
+    overflow: auto;
+}
