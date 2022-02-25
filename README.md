@@ -1,9 +1,23 @@
+### watch the Project Demo by clicking on the below video
+[![Watch the video](https://img.youtube.com/vi/uVNS44pm7cw/maxresdefault.jpg)](https://youtu.be/uVNS44pm7cw)
 ### Install the  following applications in your system
  1. Ganache
  2. Metamak (chrome extension)
+### Deploy the contracts in the blockchain network
+1. Open Ganache and select quick start
+1. Make sure you have truffle installed
+2. Use the link to install truffle https://www.npmjs.com/package/truffle
+3. Once installed use code > [truffle deploy] .. in the terminal.
+4. The address in the contract present in `build/contracts/_.js` will change
+5. Copy the address of each contracts and paste it in the `src/contracts/_.js  PATIENT_DATA_LIST_ADDRESS`
+### create account in metamask
+1. copy one of the private key present in Ganache app
+2. Import the private key in the metamask to create account
+3. change `not connected` to `connected` 
+
+![image 4](./images/4.png)
 ### To run the project
-`npm update` then 
-`npm start`
+`npm update` then `npm start` And now you can start saving the patient data.
 ### Idea behind this project
 
 Blockchain based Database to secure patient data and ensure privacy
