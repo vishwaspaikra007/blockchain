@@ -1,5 +1,5 @@
 ### watch the Project Demo by clicking on the below video
-[![Watch the video](https://img.youtube.com/vi/uVNS44pm7cw/maxresdefault.jpg)](https://youtu.be/uVNS44pm7cw)
+[![Watch the video](https://img.youtube.com/vi/0XCSPLJAwHw/maxresdefault.jpg)](https://youtu.be/0XCSPLJAwHw)
 ### Install the  following applications in your system
  1. Ganache
  2. Metamak (chrome extension)
@@ -101,13 +101,13 @@ This research was supported by Government Engineering College, Raipur and We are
 - “Smart Contracts”  https://ethereum.org/en/developers/docs/smart-contracts/
 - “SHA-256” https://en.wikipedia.org/wiki/SHA-2
 - “AES”  https://www.educative.io/edpresso/what-is-the-aes-algorithm
+- "How to Build Ethereum Dapp with React.js · Complete Step-By-Step Guide" https://www.dappuniversity.com/articles/ethereum-dapp-react-tutorial
 
-# Author’s details
+# Developer's details
 
-1. Assistant Professor, Computer Science & Engineering, Government Engineering College, Raipur, Chhattisgarh, India
-2. Under-Graduate Student, Computer Science & Engineering, Government Engineering College, Raipur, Chhattisgarh, India, dikshavermabit@gmail.com
-3. Under-Graduate Student, Computer Science & Engineering, Government Engineering College, Raipur, Chhattisgarh, India, nakulbegana191170@gmail.com
-4. Under-Graduate Student, Computer Science & Engineering, Government Engineering College, Raipur, Chhattisgarh, India, vishwaspaikra007@gmail.com
+1. Vishwas Paikra https://github.com/vishwaspaikra007
+2. Satyam Lachhwani https://github.com/Satyam1203
+3. Diksha Verma https://github.com/dikshaverma011
 
 
 
